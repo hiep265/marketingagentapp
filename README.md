@@ -58,7 +58,7 @@ graph TD
 
 ---
 
-## 📦 Các Thành Phần Chi Tiết
+## 📦 Các Thành Phần Chi Tiết 
 
 ### 1. Central AI Agent & Orchestrator (OpenClaw)
 *   **Chức năng**: Hệ thống AI trung tâm chạy trên nền Node.js API, đóng vai trò nhận diện ý định (Intent Recognition), tự động hóa các luồng làm việc giữa các công cụ trong nền tảng.
