@@ -27,22 +27,22 @@ graph TD
     User([Operator / Customer]) -->|Access via HTTPS| Cloudflare[Cloudflare Tunnel]
     Cloudflare -->|Secure Edge| Nginx[Nginx Reverse Proxy]
     
-    subgraph Security Gate [Workspace SSO Gateway]
+    subgraph SecurityGate ["Workspace SSO Gateway"]
         Nginx -->|Check Session| OAuth2[OAuth2 Proxy]
         OAuth2 -->|Identify Provider| Keycloak[Keycloak Identity Provider]
     end
 
-    subgraph Portal [Unified App Shell]
+    subgraph Portal ["Unified App Shell"]
         Nginx -->|Route /| AppShell[Next.js App Shell]
     end
 
-    subgraph Core Services [Platform Sub-Projects]
+    subgraph CoreServices ["Platform Sub-Projects"]
         Nginx -->|SAML Authenticated| Chatwoot[Chatwoot Omnichannel Chat]
         Nginx -->|OIDC Authenticated| Postiz[Postiz Social Media Scheduler]
         Nginx -->|Trusted-Proxy Auth| OpenClaw[OpenClaw AI Orchestrator]
     end
 
-    subgraph Storage & Workflows [Data & Engine Layers]
+    subgraph StorageWorkflows ["Data & Engine Layers"]
         Postiz -->|Queue Jobs| Temporal[Temporal Workflow Stack]
         Chatwoot -->|Events Webhook| OpenClaw
         OpenClaw -.->|Cross-App Automation| Postiz
@@ -51,9 +51,9 @@ graph TD
     classDef security fill:#f9f,stroke:#333,stroke-width:2px;
     classDef core fill:#bbf,stroke:#333,stroke-width:1px;
     classDef db fill:#fbf,stroke:#333,stroke-width:1px;
-    class Security Gate security;
-    class Core Services core;
-    class Storage & Workflows db;
+    class SecurityGate security;
+    class CoreServices core;
+    class StorageWorkflows db;
 ```
 
 ---
