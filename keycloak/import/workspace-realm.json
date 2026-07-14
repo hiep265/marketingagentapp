@@ -1,0 +1,151 @@
+{
+  "realm": "workspace",
+  "displayName": "Manager Workspace",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "groups": [
+    {
+      "name": "workspace-users"
+    },
+    {
+      "name": "workspace-admins"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "workspace-gate",
+      "name": "Workspace SSO Gate",
+      "description": "Shared oauth2-proxy gate for app, Chatwoot, Postiz, and OpenClaw.",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "c899b90974311353214e25408fb84e9abb2b6e097ca36bff1552595b3d1d2f4a",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": true,
+      "redirectUris": [
+        "https://app.hiep265.shop/oauth2/callback",
+        "https://chat.hiep265.shop/oauth2/callback",
+        "https://post.hiep265.shop/oauth2/callback",
+        "https://openclaw.hiep265.shop/oauth2/callback"
+      ],
+      "webOrigins": [
+        "https://app.hiep265.shop",
+        "https://chat.hiep265.shop",
+        "https://post.hiep265.shop",
+        "https://openclaw.hiep265.shop"
+      ],
+      "attributes": {
+        "post.logout.redirect.uris": "https://app.hiep265.shop/*##https://chat.hiep265.shop/*##https://post.hiep265.shop/*##https://openclaw.hiep265.shop/*"
+      }
+    },
+    {
+      "clientId": "postiz",
+      "name": "Postiz",
+      "description": "Generic OAuth login for Postiz.",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "1932e50e74b08a7a7e5860d507b259339c9a1a507c6bd150",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "https://post.hiep265.shop/settings",
+        "https://post.hiep265.shop/auth*"
+      ],
+      "webOrigins": [
+        "https://post.hiep265.shop"
+      ]
+    },
+    {
+      "clientId": "https://chat.hiep265.shop/saml/sp/1",
+      "name": "Chatwoot Account 1",
+      "enabled": true,
+      "protocol": "saml",
+      "redirectUris": [
+        "https://chat.hiep265.shop/omniauth/saml/callback?account_id=1"
+      ],
+      "attributes": {
+        "saml.assertion.consumer.url.post": "https://chat.hiep265.shop/omniauth/saml/callback?account_id=1",
+        "saml.force.post.binding": "true",
+        "saml.authnstatement": "true",
+        "saml.server.signature": "true",
+        "saml.assertion.signature": "false",
+        "saml.client.signature": "false",
+        "saml.encrypt": "false",
+        "saml_name_id_format": "email"
+      },
+      "protocolMappers": [
+        {
+          "name": "email",
+          "protocol": "saml",
+          "protocolMapper": "saml-user-property-mapper",
+          "config": {
+            "user.attribute": "email",
+            "attribute.name": "email",
+            "friendly.name": "email",
+            "attribute.nameformat": "Basic"
+          }
+        },
+        {
+          "name": "first_name",
+          "protocol": "saml",
+          "protocolMapper": "saml-user-property-mapper",
+          "config": {
+            "user.attribute": "firstName",
+            "attribute.name": "first_name",
+            "friendly.name": "first_name",
+            "attribute.nameformat": "Basic"
+          }
+        },
+        {
+          "name": "last_name",
+          "protocol": "saml",
+          "protocolMapper": "saml-user-property-mapper",
+          "config": {
+            "user.attribute": "lastName",
+            "attribute.name": "last_name",
+            "friendly.name": "last_name",
+            "attribute.nameformat": "Basic"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "owner",
+      "email": "owner@hiep265.shop",
+      "firstName": "Workspace",
+      "lastName": "Owner",
+      "enabled": true,
+      "emailVerified": true,
+      "groups": [
+        "workspace-admins",
+        "workspace-users"
+      ],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "ChangeMe_SSO_2026!",
+          "temporary": true
+        }
+      ],
+      "requiredActions": [
+        "UPDATE_PASSWORD"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+tunnel: 362ef5b2-84b4-42e0-9015-472ed94ba792
+credentials-file: /etc/cloudflared/credentials.json
+no-autoupdate: true
+
+ingress:
+  - hostname: app.hiep265.shop
+    service: http://nginx-proxy:80
+  - hostname: chat.hiep265.shop
+    service: http://nginx-proxy:80
+  - hostname: post.hiep265.shop
+    service: http://nginx-proxy:80
+  - hostname: openclaw.hiep265.shop
+    service: http://nginx-proxy:80
+  - hostname: erp.hiep265.shop
+    service: http://nginx-proxy:80
+  - service: http_status:404

@@ -1,0 +1,54 @@
+{
+  "clientId": "https://chat.hiep265.shop/saml/sp/1",
+  "name": "Chatwoot Account 1",
+  "enabled": true,
+  "protocol": "saml",
+  "redirectUris": [
+    "https://chat.hiep265.shop/omniauth/saml/callback?account_id=1"
+  ],
+  "attributes": {
+    "saml.assertion.consumer.url.post": "https://chat.hiep265.shop/omniauth/saml/callback?account_id=1",
+    "saml.force.post.binding": "true",
+    "saml.authnstatement": "true",
+    "saml.server.signature": "true",
+    "saml.assertion.signature": "false",
+    "saml.client.signature": "false",
+    "saml.encrypt": "false",
+    "saml_name_id_format": "email"
+  },
+  "protocolMappers": [
+    {
+      "name": "email",
+      "protocol": "saml",
+      "protocolMapper": "saml-user-property-mapper",
+      "config": {
+        "user.attribute": "email",
+        "attribute.name": "email",
+        "friendly.name": "email",
+        "attribute.nameformat": "Basic"
+      }
+    },
+    {
+      "name": "first_name",
+      "protocol": "saml",
+      "protocolMapper": "saml-user-property-mapper",
+      "config": {
+        "user.attribute": "firstName",
+        "attribute.name": "first_name",
+        "friendly.name": "first_name",
+        "attribute.nameformat": "Basic"
+      }
+    },
+    {
+      "name": "last_name",
+      "protocol": "saml",
+      "protocolMapper": "saml-user-property-mapper",
+      "config": {
+        "user.attribute": "lastName",
+        "attribute.name": "last_name",
+        "friendly.name": "last_name",
+        "attribute.nameformat": "Basic"
+      }
+    }
+  ]
+}
