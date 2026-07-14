@@ -24,13 +24,11 @@ export async function GET() {
   const chatwootOnline = await checkService('http://chatwoot-web:3000/');
   const postizOnline = await checkService('http://postiz-web:5000/');
   const openclawOnline = await checkService('http://openclaw-gateway:18789/healthz');
-  const bimOnline = await checkService('http://bim-ingest-service:8095/healthz');
 
   return NextResponse.json({
     chatwoot: chatwootOnline ? 'online' : 'offline',
     postiz: postizOnline ? 'online' : 'offline',
     openclaw: openclawOnline ? 'online' : 'offline',
-    bim: bimOnline ? 'online' : 'offline',
     timestamp: new Date().toISOString()
   });
 }

@@ -335,56 +335,7 @@ services:
         aliases:
           - openclaw-gateway-origin
 
-  # ==========================================
-  # BIM RAG Stack (IFC -> Neo4j + LightRAG)
-  # ==========================================
-  bim-neo4j:
-    image: neo4j:5-community
-    container_name: bim-neo4j
-    restart: unless-stopped
-    environment:
-      - NEO4J_AUTH=neo4j/bim_neo4j_password
-      - NEO4J_server_memory_heap_initial__size=512m
-      - NEO4J_server_memory_heap_max__size=1G
-      - NEO4J_server_memory_pagecache_size=512m
-    volumes:
-      - bim-neo4j-data:/data
-      - bim-neo4j-logs:/logs
-    healthcheck:
-      test: ["CMD-SHELL", "cypher-shell -u neo4j -p bim_neo4j_password 'RETURN 1' >/dev/null 2>&1 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-    networks:
-      workspace-network:
-        aliases:
-          - neo4j
 
-  bim-ingest-service:
-    build:
-      context: ./bim-ingest-service
-      dockerfile: Dockerfile
-    container_name: bim-ingest-service
-    restart: unless-stopped
-    depends_on:
-      - bim-neo4j
-    environment:
-      - BIM_SERVICE_API_KEY=bim-dev-key
-      - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=bim_neo4j_password
-      - LIGHTRAG_BASE_URL=
-      - LIGHTRAG_API_KEY=
-      - LIGHTRAG_MODE=adapter
-      - BIM_OPENCLAW_WORKSPACE_PREFIX=/home/node/.openclaw/workspace
-      - BIM_WORKSPACE_MOUNT=/workspace
-    volumes:
-      - ./openclaw-workspace:/workspace:ro
-      - bim-uploads:/data/uploads
-    ports:
-      - "127.0.0.1:8095:8095"
-    networks:
-      - workspace-network
 
   # ==========================================
   # Cloudflare Tunnel
@@ -413,9 +364,6 @@ volumes:
   postiz-redis-data:
   temporal-es-data:
   temporal-postgres-data:
-  bim-neo4j-data:
-  bim-neo4j-logs:
-  bim-uploads:
 
 # ==========================================
 # Networks

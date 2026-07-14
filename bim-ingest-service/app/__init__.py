@@ -1,1 +1,0 @@
-"""BIM ingest service package."""
