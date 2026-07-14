@@ -18,7 +18,8 @@ Thay vì vận hành các dự án và công cụ riêng lẻ, hệ thống này
     *   **Tự động hóa đăng tải (Smart Auto-Posting)**: Tạo ra các ý tưởng truyền thông từ dữ liệu nội bộ và đẩy trực tiếp vào lịch đăng bài của Postiz.
 
 ---
-
+![alt text](image.png)
+![alt text](image-1.png)
 ## 📐 Kiến Trúc Hệ Thống (Architecture)
 
 ```mermaid
